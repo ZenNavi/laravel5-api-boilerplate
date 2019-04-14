@@ -7,9 +7,11 @@ use App\Transformers\BaseTransformer;
 class Department extends BaseModel
 {
     /**
-     * @var string UUID key
+     * @var int Auto increments integer key
      */
-    public $primaryKey = '_id';
+    public $primaryKey = 'id';
+
+    public $incrementing = true;
 
     /**
      * @var array Relations to load implicitly by Restful controllers
@@ -24,7 +26,7 @@ class Department extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['dept_id', 'dept_name', 'dept_detail'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output

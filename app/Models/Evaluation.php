@@ -6,10 +6,13 @@ use App\Transformers\BaseTransformer;
 
 class Evaluation extends BaseModel
 {
+
     /**
-     * @var string UUID key
+     * @var int Auto increments integer key
      */
-    public $primaryKey = '_id';
+    public $primaryKey = 'id';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     /**
      * @var array Relations to load implicitly by Restful controllers
@@ -24,7 +27,7 @@ class Evaluation extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['title','detail'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output

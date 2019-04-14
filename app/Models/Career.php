@@ -9,8 +9,8 @@ class Career extends BaseModel
     /**
      * @var string UUID key
      */
-    public $primaryKey = '_id';
-
+    public $primaryKey = 'id';
+    public $incrementing = true;
     /**
      * @var array Relations to load implicitly by Restful controllers
      */

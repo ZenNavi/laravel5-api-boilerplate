@@ -17,16 +17,13 @@ class CreateEvaluationSheetQuestionItemsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
-
-            $table->primary('_id');
-            $table->string('eval_id');
-            $table->string('eval_sheet_id');
-            $table->string('eval_sheet_question_id');
-            $table->string('title');
-            $table->text('detail');
-            $table->string('points');
-
+            $table->increments('id');
+            $table->integer('eval_id');
+            $table->integer('eval_sheet_id');
+            $table->integer('eval_sheet_question_id');
+            $table->string('title', 50);
+            $table->text('detail')->nullable();
+            $table->integer('points');
             $table->timestamps();
             // $table->softDeletes();
         });

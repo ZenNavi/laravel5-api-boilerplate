@@ -17,15 +17,12 @@ class CreateAttachmentsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
-
-            $table->primary('_id');
-            $table->string('origin_name');
-            $table->string('saved_name');
+            $table->uuid('id');
+            $table->string('origin_name', 50);
+            $table->string('saved_name', 50);
             $table->integer('filesize');
-            $table->string('filetype');
-            $table->text('meta');
-
+            $table->string('filetype', 50);
+            $table->text('meta')->nullable();
             $table->timestamps();
             // $table->softDeletes();
         });

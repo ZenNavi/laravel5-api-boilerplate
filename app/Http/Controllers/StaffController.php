@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\RestfulService;
+use App\Transformers\BaseTransformer;
 use Illuminate\Http\Request;
 use App\Models\Staff;
 
@@ -21,4 +23,5 @@ class StaffController extends Controller
      * @var null|BaseTransformer The transformer this controller should use, if overriding the model & default
      */
     public static $transformer = null;
+
 }

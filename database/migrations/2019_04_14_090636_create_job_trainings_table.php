@@ -17,17 +17,15 @@ class CreateJobTrainingsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
-
-            $table->primary('_id');
-            $table->string('staff_id');
-            $table->string('course_name');
-            $table->string('course_detail');
-            $table->string('organization');
-            $table->string('course_result');
-            $table->string('attach_id');
-            $table->string('issue_at');
-            $table->string('remark');
+            $table->increments('id');
+            $table->integer('staff_id');
+            $table->string('course_name', 30);
+            $table->string('course_detail', 200)->nullable();
+            $table->string('organization', 50)->nullable();
+            $table->string('course_result', 50)->nullable();
+            $table->string('attach_id', 30)->nullable();
+            $table->date('issue_at')->nullable();
+            $table->string('remark', 200)->nullable();
 
             $table->timestamps();
             // $table->softDeletes();

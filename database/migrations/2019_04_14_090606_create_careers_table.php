@@ -17,16 +17,13 @@ class CreateCareersTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
-
-            $table->primary('_id');
-
-            $table->string('staff_id');
-            $table->string('career_start_at');
-            $table->string('career_end_at');
-            $table->string('company_name');
-            $table->string('job_title');
-            $table->string('work_title');
+            $table->increments('id');
+            $table->integer('staff_id');
+            $table->string('company_name', 50);
+            $table->string('career_start_at')->nullable();
+            $table->string('career_end_at')->nullable();
+            $table->string('job_title')->nullable();
+            $table->string('work_title')->nullable();
 
             $table->timestamps();
             // $table->softDeletes();

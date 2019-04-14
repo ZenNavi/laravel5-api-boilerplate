@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Http\Request;
 
 /*
@@ -29,6 +30,16 @@ Route::get('/', function () {
  */
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', ['middleware' => ['api']], function ($api) {
+
+    $api->group(['prefix' => 'department'], function($api){
+        $api->get('/', 'App\Http\Controllers\DepartmentController@getAll');
+    });
+    $api->group(['prefix' => 'evaluation'], function($api){
+        $api->get('/', 'App\Http\Controllers\EvaluationController@getAll');
+    });
+    $api->group(['prefix' => 'staff'], function($api){
+        $api->get('/', 'App\Http\Controllers\StaffController@getAll');
+    });
     /*
      * Authentication
      */

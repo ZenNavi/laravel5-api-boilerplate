@@ -17,21 +17,17 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
-
-            $table->primary('_id');
-
-            $table->string('name', 50)->nullable(false);
-            $table->string('email', 200)->nullable(false)->unique();
-            $table->string('pic_id');
-            $table->string('dept_id');
-            $table->string('grade_id');
-            $table->string('address');
-            $table->date('birth');
-            $table->date('enter_at');
+            $table->increments('id');
+            $table->string('name', 50);
+            $table->string('email', 200)->unique();
+            $table->string('pic_id', 30)->nullable();
+            $table->string('dept_id', 20);
+            $table->string('grade_id', 20)->nullable();
+            $table->string('address', 200)->nullable();
+            $table->date('birth')->nullable();
+            $table->date('enter_at')->nullable();
             $table->string('status', 20);
             $table->string('title', 50);
-
             $table->timestamps();
             // $table->softDeletes();
         });

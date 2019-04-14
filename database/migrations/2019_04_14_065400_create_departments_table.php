@@ -17,14 +17,12 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
 
-            $table->string('dept_id');
-            $table->string('dept_name');
-            $table->string('dept_detail');
-            $table->string('dept_use_yn')->default('Y');
-            $table->primary('dept_id');
-
+            $table->increments('id');
+            $table->string('dept_id', 20)->unique();
+            $table->string('dept_name', 50);
+            $table->string('dept_detail', 200)->nullable();
+            $table->string('dept_use_yn', 1)->default('Y');
             $table->timestamps();
             // $table->softDeletes();
         });

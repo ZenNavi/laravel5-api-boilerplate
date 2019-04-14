@@ -17,17 +17,13 @@ class CreateQualificationsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
-
-            $table->primary('_id');
-
-            $table->string('staff_id');
-            $table->string('qualification_type');
-            $table->string('qualification_name');
-            $table->string('qualification_grade');
-            $table->string('issuing_authority');
-            $table->string('remark');
-
+            $table->increments('id');
+            $table->integer('staff_id');
+            $table->string('qualification_name', 30);
+            $table->string('qualification_type', 20)->nullable();
+            $table->string('qualification_grade', 20)->nullable();
+            $table->string('issuing_authority', 50)->nullable();
+            $table->string('remark', 200)->nullable();
             $table->timestamps();
             // $table->softDeletes();
         });

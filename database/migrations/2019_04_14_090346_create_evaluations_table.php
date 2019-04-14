@@ -17,11 +17,10 @@ class CreateEvaluationsTable extends Migration
     public function up()
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
-            $table->uuid('_id');
 
-            $table->primary('_id');
-
-            $table->string('title', 100)->nullable(false);
+            $table->increments('id');
+            $table->string('title', 100);
+            $table->tinyInteger('step');
             $table->text('detail')->nullable(true);
 
             $table->timestamps();
