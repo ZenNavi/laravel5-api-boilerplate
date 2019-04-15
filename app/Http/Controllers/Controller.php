@@ -38,4 +38,12 @@ class Controller extends BaseController
             return $this->response->collection($resources, $this->getTransformer());
         }
     }
+
+    public function get($uuid)
+    {
+        $model = new static::$model;
+        if( property_exists($model, 'localWithDetail' ) )
+            $model::$localWith = array_merge($model::$localWith, $model::$localWithDetail);
+        return parent::get($uuid);
+    }
 }

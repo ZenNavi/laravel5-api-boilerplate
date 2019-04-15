@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\RestfulService;
 use App\Transformers\BaseTransformer;
-use Illuminate\Http\Request;
 use App\Models\Staff;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class StaffController extends Controller
 {
