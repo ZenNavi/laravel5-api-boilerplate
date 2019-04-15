@@ -66,7 +66,11 @@ class BaseTransformer extends RestfulTransformer
             ['id' => $model->getKey()],
             $transformed
         );
-        // unset($transformed[$model->getKeyName()]);
+
+        /** auto_increment 는 삭제 하지 않는다. */
+        if( ! $model->incrementing  && ! array_key_exists($model->getKeyName(), $model->getAttributes())) {
+           unset($transformed[$model->getKeyName()]);
+        }
 
         /*
          * Transform the model keys' case

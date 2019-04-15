@@ -24,11 +24,12 @@ class BaseModel extends RestfulModel
             // If the PK(s) are missing, generate them
             $uuidKeyName = $model->getKeyName();
 
-            if (!$model->incrementing && ! array_key_exists($uuidKeyName, $model->getAttributes())) {
-                $model->$uuidKeyName = Uuid::uuid4()->toString();
-            } else {
+            if( $model->incrementing ) {
                 $model->$uuidKeyName = null;
+            } else if ( ! array_key_exists($uuidKeyName, $model->getAttributes())) {
+                $model->$uuidKeyName = Uuid::uuid4()->toString();
             }
+
         });
 
         // Add functionality for updating a model

@@ -29,7 +29,7 @@ class User extends BaseModel implements
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = ['primaryRole', 'roles'];
+    public static $localWith = ['primaryRole', 'roles', 'staff'];
 
     /**
      * The attributes that are mass assignable.
@@ -159,5 +159,10 @@ class User extends BaseModel implements
     public function getAuthIdentifierName()
     {
         return $this->getKeyName();
+    }
+
+    public function staff()
+    {
+        return $this->hasOne(Staff::class, 'email', 'email');
     }
 }

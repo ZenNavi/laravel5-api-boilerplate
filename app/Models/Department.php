@@ -16,7 +16,7 @@ class Department extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $localWith = ['staffs'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -41,6 +41,11 @@ class Department extends BaseModel
     public function getValidationRules()
     {
         return [];
+    }
+
+    public function staffs()
+    {
+        return $this->hasMany(Staff::class, 'dept_id', 'dept_id');
     }
 
 }

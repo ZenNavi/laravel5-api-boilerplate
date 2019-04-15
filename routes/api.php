@@ -25,21 +25,14 @@ Route::get('/', function () {
     echo 'Welcome to our API';
 });
 
+Route::post('/login', 'Auth\AuthController@login');
+
 /**
  * @var $api \Dingo\Api\Routing\Router
  */
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', ['middleware' => ['api']], function ($api) {
 
-    $api->group(['prefix' => 'department'], function($api){
-        $api->get('/', 'App\Http\Controllers\DepartmentController@getAll');
-    });
-    $api->group(['prefix' => 'evaluation'], function($api){
-        $api->get('/', 'App\Http\Controllers\EvaluationController@getAll');
-    });
-    $api->group(['prefix' => 'staff'], function($api){
-        $api->get('/', 'App\Http\Controllers\StaffController@getAll');
-    });
     /*
      * Authentication
      */
@@ -82,6 +75,28 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
          */
         $api->group(['prefix' => 'roles'], function ($api) {
             $api->get('/', 'App\Http\Controllers\RoleController@getAll');
+        });
+
+        /*
+         * Departments
+         */
+        $api->group(['prefix' => 'department'], function($api){
+            $api->get('/', 'App\Http\Controllers\DepartmentController@getAll');
+        });
+
+        /*
+         * Evaluations
+         */
+        $api->group(['prefix' => 'evaluation'], function($api){
+            $api->get('/', 'App\Http\Controllers\EvaluationController@getAll');
+        });
+
+        /*
+         * Staff
+         */
+        $api->group(['prefix' => 'staff'], function($api){
+            $api->get('/', 'App\Http\Controllers\StaffController@getAll');
+            $api->get('/{id}', 'App\Http\Controllers\StaffController@get');
         });
     });
 });
