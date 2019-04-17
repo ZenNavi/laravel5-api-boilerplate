@@ -10,16 +10,24 @@ class RoleTableSeeder extends BaseSeeder
             'name' => 'admin',
             'description' => 'Administrator Users',
         ]);
+        Role::firstOrCreate([
+            'name' => 'executives',
+            'description' => 'Executives Users',
+        ]);
+        Role::firstOrCreate([
+            'name' => 'normal',
+            'description' => 'Normal Users',
+        ]);
     }
 
     public function runFake()
     {
-        for ($i = 0; $i < 10; ++$i) {
+        /*for ($i = 0; $i < 10; ++$i) {
             Role::firstOrCreate([
                 'name' => $this->faker->unique()->word(),
                 'description' => $this->faker->sentence(),
             ]);
-        }
+        }*/
     }
 
     /**
