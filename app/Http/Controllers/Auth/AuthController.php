@@ -28,7 +28,7 @@ class AuthController extends Controller
         $tokenReponse->token_type = 'bearer';
         $tokenReponse->expires_in = auth()->factory()->getTTL();
         $tokenReponse->user = auth()->user();
-        $tokenReponse->user->staff = $tokenReponse->user->staff();
+        $tokenReponse->user->staff = Staff::with('picture')->where('email', $tokenReponse->user->email)->first();
 
         return $this->response->item($tokenReponse, $this->getTransformer())->setStatusCode(200);
     }
