@@ -14,7 +14,7 @@ class Education extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $localWith = ['attachment'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -41,4 +41,8 @@ class Education extends BaseModel
         return [];
     }
 
+    public function attachment()
+    {
+        return $this->hasOne(Attachment::class, 'id', 'attach_id');
+    }
 }

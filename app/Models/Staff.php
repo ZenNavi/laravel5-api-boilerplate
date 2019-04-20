@@ -76,7 +76,7 @@ class Staff extends BaseModel
 
     public function educations()
     {
-        return $this->hasMany(Education::class, 'staff_id', 'id');
+        return $this->hasMany(Education::class, 'staff_id', 'id')->with('attachment');
     }
 
     public function careers()
@@ -86,6 +86,6 @@ class Staff extends BaseModel
 
     public function job_trainings()
     {
-        return $this->hasMany(JobTraining::class, 'staff_id', 'id');
+        return $this->hasMany(JobTraining::class, 'staff_id', 'id')->with('attachment');;
     }
 }

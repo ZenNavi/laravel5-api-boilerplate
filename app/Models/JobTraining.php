@@ -14,7 +14,7 @@ class JobTraining extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $localWith = ['attachment'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -39,6 +39,11 @@ class JobTraining extends BaseModel
     public function getValidationRules()
     {
         return [];
+    }
+
+    public function attachment()
+    {
+        return $this->hasOne(Attachment::class, 'id', 'attach_id');
     }
 
 }

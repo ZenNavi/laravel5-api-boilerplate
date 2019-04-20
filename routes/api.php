@@ -27,6 +27,9 @@ Route::get('/', function () {
 
 Route::post('/login', 'Auth\AuthController@login');
 
+Route::post('/attachment/upload', 'AttachmentController@upload');
+Route::get('/attachment/download/{id}', 'AttachmentController@download');
+
 /**
  * @var $api \Dingo\Api\Routing\Router
  */
@@ -112,5 +115,11 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
             $api->patch('/{id}', 'App\Http\Controllers\StaffController@patch');
             $api->delete('/{id}', 'App\Http\Controllers\StaffController@delete');
         });
+
+        $api->group(['prefix' => 'attachment'], function($api){
+            $api->post('/upload', 'App\Http\Controllers\AttachmentController@upload');
+            $api->get('/download/{id}', 'App\Http\Controllers\AttachmentController@download');
+        });
+
     });
 });

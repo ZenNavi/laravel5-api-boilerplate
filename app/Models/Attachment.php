@@ -9,7 +9,7 @@ class Attachment extends BaseModel
     /**
      * @var string UUID key
      */
-    public $primaryKey = '_id';
+    public $primaryKey = 'id';
 
     /**
      * @var array Relations to load implicitly by Restful controllers
@@ -24,12 +24,14 @@ class Attachment extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['origin_name', 'saved_name', 'filesize', 'filetype', 'meta'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
      */
     protected $hidden = [];
+
+    private $url;
 
     /**
      * Return the validation rules for this model

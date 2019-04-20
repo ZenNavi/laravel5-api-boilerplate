@@ -23,7 +23,7 @@ class CreateJobTrainingsTable extends Migration
             $table->string('course_detail', 200)->nullable();
             $table->string('organization', 50)->nullable();
             $table->string('course_result', 50)->nullable();
-            $table->string('attach_id', 30)->nullable();
+            $table->string('attach_id', 36)->nullable();
             $table->date('issue_at')->nullable();
             $table->string('remark', 200)->nullable();
 

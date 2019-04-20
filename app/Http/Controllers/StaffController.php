@@ -39,6 +39,7 @@ class StaffController extends Controller
         $educationIdList = [];
         foreach($educations as $education ) {
             $education['staff_id'] = $uuid;
+            unset($education['attachment']);
             $instance = Education::firstOrCreate($education);
             $instance->save();
             array_push($educationIdList, $instance->id);
@@ -49,6 +50,7 @@ class StaffController extends Controller
         $careerIdList = [];
         foreach($careers as $career) {
             $career['staff_id'] = $uuid;
+            unset($career['attachment']);
             $instance = Career::firstOrCreate($career);
             $instance->save();
             array_push($careerIdList, $instance->id);
@@ -59,6 +61,7 @@ class StaffController extends Controller
         $qualificationIdList = [];
         foreach($qualifications as $qualification) {
             $qualification['staff_id'] = $uuid;
+            unset($qualification['attachment']);
             $instance = Qualification::firstOrCreate($qualification);
             $instance->save();
             array_push($qualificationIdList, $instance->id);
@@ -69,6 +72,7 @@ class StaffController extends Controller
         $jobTrainingIdList = [];
         foreach($jobTrainings as $jobTraining) {
             $jobTraining['staff_id'] = $uuid;
+            unset($jobTraining['attachment']);
             $instance = JobTraining::firstOrCreate($jobTraining);
             $instance->save();
             array_push($jobTrainingIdList, $instance->id);
@@ -79,6 +83,7 @@ class StaffController extends Controller
         $yearlyCareerIdList = [];
         foreach($yearlyCareers as $yearlyCareer) {
             $yearlyCareer['staff_id'] = $uuid;
+            unset($yearlyCareer['attachment']);
             $instance = YearlyCareer::firstOrCreate($yearlyCareer);
             $instance->save();
             array_push($yearlyCareerIdList, $instance->id);

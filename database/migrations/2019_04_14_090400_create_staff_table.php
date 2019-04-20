@@ -20,7 +20,7 @@ class CreateStaffTable extends Migration
             $table->increments('id');
             $table->string('name', 50);
             $table->string('email', 200)->unique();
-            $table->string('pic_id', 30)->nullable();
+            $table->string('pic_id', 36)->nullable();
             $table->string('dept_id', 20);
             $table->string('grade_id', 20)->nullable();
             $table->string('address', 200)->nullable();

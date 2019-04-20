@@ -18,8 +18,8 @@ class CreateAttachmentsTable extends Migration
     {
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('origin_name', 50);
-            $table->string('saved_name', 50);
+            $table->string('origin_name', 255);
+            $table->string('saved_name', 255);
             $table->integer('filesize');
             $table->string('filetype', 50);
             $table->text('meta')->nullable();
