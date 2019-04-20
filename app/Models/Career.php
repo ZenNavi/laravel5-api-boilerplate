@@ -24,7 +24,7 @@ class Career extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['staff_id', 'company_name', 'career_start_at', 'career_end_at', 'job_title', 'work_title'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output

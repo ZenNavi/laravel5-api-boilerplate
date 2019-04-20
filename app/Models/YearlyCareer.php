@@ -25,7 +25,7 @@ class YearlyCareer extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['staff_id', 'work_year', 'work_department', 'work_job', 'issue_at', 'remark'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output

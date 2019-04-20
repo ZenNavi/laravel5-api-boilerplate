@@ -24,7 +24,7 @@ class Qualification extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['staff_id', 'qualification_name', 'qualification_type', 'qualification_grade', 'issuing_authority', 'remark'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output

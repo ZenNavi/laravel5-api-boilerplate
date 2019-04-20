@@ -82,6 +82,11 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
          */
         $api->group(['prefix' => 'department'], function($api){
             $api->get('/', 'App\Http\Controllers\DepartmentController@getAll');
+            $api->get('/{id}', 'App\Http\Controllers\DepartmentController@get');
+            $api->post('/{id?}', 'App\Http\Controllers\DepartmentController@post');
+            $api->put('/{id}', 'App\Http\Controllers\DepartmentController@put');
+            $api->patch('/{id}', 'App\Http\Controllers\DepartmentController@patch');
+            $api->delete('/{id}', 'App\Http\Controllers\DepartmentController@delete');
         });
 
         /*
@@ -89,6 +94,11 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
          */
         $api->group(['prefix' => 'evaluation'], function($api){
             $api->get('/', 'App\Http\Controllers\EvaluationController@getAll');
+            $api->get('/{id}', 'App\Http\Controllers\EvaluationController@get');
+            $api->post('/{id?}', 'App\Http\Controllers\EvaluationController@post');
+            $api->put('/{id}', 'App\Http\Controllers\EvaluationController@put');
+            $api->patch('/{id}', 'App\Http\Controllers\EvaluationController@patch');
+            $api->delete('/{id}', 'App\Http\Controllers\EvaluationController@delete');
         });
 
         /*
@@ -97,6 +107,10 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
         $api->group(['prefix' => 'staff'], function($api){
             $api->get('/', 'App\Http\Controllers\StaffController@getAll');
             $api->get('/{id}', 'App\Http\Controllers\StaffController@get');
+            $api->post('/{id?}', 'App\Http\Controllers\StaffController@post');
+            $api->put('/{id}', 'App\Http\Controllers\StaffController@put');
+            $api->patch('/{id}', 'App\Http\Controllers\StaffController@patch');
+            $api->delete('/{id}', 'App\Http\Controllers\StaffController@delete');
         });
     });
 });

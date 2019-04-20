@@ -24,7 +24,7 @@ class Education extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['staff_id', 'school_type', 'school_name', 'graduation_at', 'attach_id'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output

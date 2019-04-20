@@ -27,7 +27,7 @@ class CreateStaffTable extends Migration
             $table->date('birth')->nullable();
             $table->date('enter_at')->nullable();
             $table->string('status', 20);
-            $table->string('title', 50);
+            $table->string('title', 50)->nullable();
             $table->timestamps();
             // $table->softDeletes();
         });

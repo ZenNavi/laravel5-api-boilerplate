@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Staff;
 use Dingo\Api\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,6 +28,7 @@ class AuthController extends Controller
         $tokenReponse->token_type = 'bearer';
         $tokenReponse->expires_in = auth()->factory()->getTTL();
         $tokenReponse->user = auth()->user();
+        $tokenReponse->user->staff = $tokenReponse->user->staff();
 
         return $this->response->item($tokenReponse, $this->getTransformer())->setStatusCode(200);
     }
