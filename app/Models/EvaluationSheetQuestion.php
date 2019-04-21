@@ -14,7 +14,7 @@ class EvaluationSheetQuestion extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $localWith = ['items'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -24,7 +24,7 @@ class EvaluationSheetQuestion extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = [];
+    protected $fillable = ['eval_id', 'eval_sheet_id', 'title', 'detail', 'points', 'sort'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
@@ -39,6 +39,11 @@ class EvaluationSheetQuestion extends BaseModel
     public function getValidationRules()
     {
         return [];
+    }
+
+    public function items()
+    {
+        return $this->hasMany(EvaluationSheetQuestionItem::class, 'eval_sheet_question_id', 'id');
     }
 
 }

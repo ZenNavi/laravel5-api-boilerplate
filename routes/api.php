@@ -96,12 +96,24 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
          * Evaluations
          */
         $api->group(['prefix' => 'evaluation'], function($api){
-            $api->get('/', 'App\Http\Controllers\EvaluationController@getAll');
-            $api->get('/{id}', 'App\Http\Controllers\EvaluationController@get');
-            $api->post('/{id?}', 'App\Http\Controllers\EvaluationController@post');
-            $api->put('/{id}', 'App\Http\Controllers\EvaluationController@put');
-            $api->patch('/{id}', 'App\Http\Controllers\EvaluationController@patch');
-            $api->delete('/{id}', 'App\Http\Controllers\EvaluationController@delete');
+            $api->get('/', 'App\Http\Controllers\EvaluationSheetController@getAll');
+            $api->get('/{id}', 'App\Http\Controllers\EvaluationSheetController@get');
+            $api->post('/{id?}', 'App\Http\Controllers\EvaluationSheetController@post');
+            $api->put('/{id}', 'App\Http\Controllers\EvaluationSheetController@put');
+            $api->patch('/{id}', 'App\Http\Controllers\EvaluationSheetController@patch');
+            $api->delete('/{id}', 'App\Http\Controllers\EvaluationSheetController@delete');
+        });
+
+        /*
+         * Evaluation Result
+         */
+        $api->group(['prefix' => 'evaluation_result'], function($api){
+            $api->get('/', 'App\Http\Controllers\EvaluationResultController@getAll');
+            $api->get('/{id}', 'App\Http\Controllers\EvaluationResultController@get');
+            $api->post('/{id?}', 'App\Http\Controllers\EvaluationResultController@post');
+            $api->put('/{id}', 'App\Http\Controllers\EvaluationResultController@put');
+            $api->patch('/{id}', 'App\Http\Controllers\EvaluationResultController@patch');
+            $api->delete('/{id}', 'App\Http\Controllers\EvaluationResultController@delete');
         });
 
         /*
@@ -116,6 +128,9 @@ $api->version('v1', ['middleware' => ['api']], function ($api) {
             $api->delete('/{id}', 'App\Http\Controllers\StaffController@delete');
         });
 
+        /*
+         * Attachment
+         */
         $api->group(['prefix' => 'attachment'], function($api){
             $api->post('/upload', 'App\Http\Controllers\AttachmentController@upload');
             $api->get('/download/{id}', 'App\Http\Controllers\AttachmentController@download');

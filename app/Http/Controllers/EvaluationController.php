@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Evaluation;
 
 class EvaluationController extends Controller
@@ -21,4 +20,5 @@ class EvaluationController extends Controller
      * @var null|BaseTransformer The transformer this controller should use, if overriding the model & default
      */
     public static $transformer = null;
+
 }
