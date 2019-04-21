@@ -53,11 +53,11 @@ class EvaluationsSeeder extends BaseSeeder
         ];
 
         $questionItems = [
-            ['title'=>'최상', 'detail'=>'매우그렇다', 'points'=>5],
-            ['title'=>'상', 'detail'=>'조금그렇다', 'points'=>4],
-            ['title'=>'중', 'detail'=>'보통이다', 'points'=>3],
-            ['title'=>'하', 'detail'=>'조금아니다', 'points'=>2],
-            ['title'=>'최하', 'detail'=>'매우아니다', 'points'=>1],
+            ['title'=>'최상', 'detail'=>'탁월', 'points'=>5],
+            ['title'=>'상', 'detail'=>'우수', 'points'=>4],
+            ['title'=>'중', 'detail'=>'양호', 'points'=>3],
+            ['title'=>'하', 'detail'=>'보통', 'points'=>2],
+            ['title'=>'최하', 'detail'=>'미흡', 'points'=>1],
         ];
 
         foreach($evaluations as $idx=>$evaluation) {
