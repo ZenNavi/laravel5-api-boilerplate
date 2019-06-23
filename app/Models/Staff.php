@@ -28,7 +28,7 @@ class Staff extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = ['name','email','pic_id','dept_id','grade_id','address','birth','enter_at','status','title'];
+    protected $fillable = ['name','user_id', 'email','pic_id','dept_id','grade_id','address','birth','enter_at','status','title'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
@@ -71,7 +71,7 @@ class Staff extends BaseModel
 
     public function qualifications()
     {
-        return $this->hasMany(Qualification::class, 'staff_id', 'id');
+        return $this->hasMany(Qualification::class, 'staff_id', 'id')->with('attachment');
     }
 
     public function educations()

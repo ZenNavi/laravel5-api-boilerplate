@@ -19,6 +19,7 @@ class CreateStaffTable extends Migration
         Schema::create(static::TABLE_NAME, function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
+            $table->uuid('user_id');
             $table->string('email', 200)->unique();
             $table->string('pic_id', 36)->nullable();
             $table->string('dept_id', 20);

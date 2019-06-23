@@ -14,7 +14,7 @@ class Qualification extends BaseModel
     /**
      * @var array Relations to load implicitly by Restful controllers
      */
-    public static $localWith = [];
+    public static $localWith = ['attachment'];
 
     /**
      * @var null|BaseTransformer The transformer to use for this model, if overriding the default
@@ -24,7 +24,7 @@ class Qualification extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = ['staff_id', 'qualification_name', 'qualification_type', 'qualification_grade', 'issuing_authority', 'remark'];
+    protected $fillable = ['staff_id', 'qualification_name', 'qualification_type', 'qualification_grade', 'attach_id', 'issuing_authority', 'remark'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
@@ -41,4 +41,8 @@ class Qualification extends BaseModel
         return [];
     }
 
+    public function attachment()
+    {
+        return $this->hasOne(Attachment::class, 'id', 'attach_id');
+    }
 }

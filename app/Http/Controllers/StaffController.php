@@ -6,13 +6,13 @@ use App\Models\Career;
 use App\Models\Education;
 use App\Models\JobTraining;
 use App\Models\Qualification;
+use App\Models\Role;
+use App\Models\User;
 use App\Models\YearlyCareer;
 use App\Transformers\BaseTransformer;
 use App\Models\Staff;
+use Hash;
 use Illuminate\Http\Request;
-use Illuminate\Queue\Jobs\Job;
-use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class StaffController extends Controller
 {
@@ -31,9 +31,76 @@ class StaffController extends Controller
      */
     public static $transformer = null;
 
+    public function qualifyCollectionQuery($query){
+        $query = parent::qualifyCollectionQuery($query);
+        $search = request('search');
+        if( !(empty($search)) ) {
+            $query->where('name', 'like', '%'.$search.'%');
+        }
+        $deptId = request('dept_id');
+        if( !(empty($deptId)) ) {
+            $query->where('dept_id', '=', $deptId);
+        }
+        $sort   = request('sort');
+        return $query;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function post(Request $request)
+    {
+        $response = parent::post($request);
+
+        $user = User::create([
+            'email'        => request('email'),
+            'password'     => request('password'),
+            'name'         => request('name'),
+            'primary_role' => Role::where('name', 'normal')->first()->role_id
+        ]);
+
+        $model = new static::$model;
+
+        $staff = $model->where('email', '=', request('email'))->first();
+        $staff->user_id = $user->user_id;
+        $staff->save();
+
+        return $response;
+    }
+
+    /**
+     * @param string $uuid
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response
+     */
     public function patch($uuid, Request $request)
     {
         $response = parent::patch($uuid, $request);
+
+        $password = request('password');
+        $userId   = request('user_id');
+
+        if( empty($userId)){
+
+            if( empty($password) ) $password = 'demo';
+
+            $user = User::create(['email'=>request('email'), 'password'=>Hash::make($password),'name'=>request('name'),'primary_role'=>Role::where('name', 'normal')->first()->role_id]);
+            $model = new static::$model;
+            $staff = $model->where('id','=',request('id'))->first();
+            $staff->user_id = $user->user_id;
+            $staff->save();
+
+            $userId = $user->user_id;
+
+        }
+
+        $user = User::where('user_id', '=', $userId)->first();
+        if( !empty($password) ) {
+            $user->password = Hash::make($password);
+        }
+        $user->email = request('email');
+        $user->save();
 
         $educations = $request->get('educations');
         $educationIdList = [];

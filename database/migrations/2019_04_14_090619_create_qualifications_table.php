@@ -23,6 +23,7 @@ class CreateQualificationsTable extends Migration
             $table->string('qualification_type', 20)->nullable();
             $table->string('qualification_grade', 20)->nullable();
             $table->string('issuing_authority', 50)->nullable();
+            $table->string('attach_id', 36)->nullable();
             $table->string('remark', 200)->nullable();
             $table->timestamps();
             // $table->softDeletes();

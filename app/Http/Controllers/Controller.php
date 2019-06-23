@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Transformers\BaseTransformer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
