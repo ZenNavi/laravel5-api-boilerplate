@@ -163,6 +163,6 @@ class User extends BaseModel implements
 
     public function staff()
     {
-        return $this->hasOne(Staff::class, 'email', 'email');
+        return $this->hasOne(Staff::class, 'user_id', 'user_id');
     }
 }

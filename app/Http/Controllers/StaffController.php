@@ -31,6 +31,10 @@ class StaffController extends Controller
      */
     public static $transformer = null;
 
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder|null
+     */
     public function qualifyCollectionQuery($query){
         $query = parent::qualifyCollectionQuery($query);
         $search = request('search');
@@ -38,9 +42,18 @@ class StaffController extends Controller
             $query->where('name', 'like', '%'.$search.'%');
         }
         $deptId = request('dept_id');
+
+        $roles = $this->auth()->user()->getRoles();
+
+        if( ! $this->auth()->user()->isAdmin() ) {
+            $user = $this->auth()->user();
+            $deptId = $user->staff->dept_id;
+        }
+
         if( !(empty($deptId)) ) {
             $query->where('dept_id', '=', $deptId);
         }
+
         $sort   = request('sort');
         return $query;
     }
