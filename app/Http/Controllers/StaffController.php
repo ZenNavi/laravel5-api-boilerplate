@@ -42,6 +42,7 @@ class StaffController extends Controller
             $query->where('name', 'like', '%'.$search.'%');
         }
         $deptId = request('dept_id');
+        $userId = request('user_id');
 
         $roles = $this->auth()->user()->getRoles();
 
@@ -50,8 +51,16 @@ class StaffController extends Controller
             $deptId = $user->staff->dept_id;
         }
 
+        if( $this->auth()->user()->primaryRole->name == 'normal') {
+            $userId = $user->user_id;
+        }
+
         if( !(empty($deptId)) ) {
             $query->where('dept_id', '=', $deptId);
+        }
+
+        if( !(empty($userId)) ) {
+            $query->where('user_id', '=', $userId);
         }
 
         $sort   = request('sort');
