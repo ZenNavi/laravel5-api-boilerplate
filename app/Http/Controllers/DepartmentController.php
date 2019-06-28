@@ -21,4 +21,15 @@ class DepartmentController extends Controller
      * @var null|BaseTransformer The transformer this controller should use, if overriding the model & default
      */
     public static $transformer = null;
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder|null
+     */
+    public function qualifyCollectionQuery($query)
+    {
+        $query = parent::qualifyCollectionQuery($query);
+        $query->where('dept_use_yn','Y');
+        return $query;
+    }
 }

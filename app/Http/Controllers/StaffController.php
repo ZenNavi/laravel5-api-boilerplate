@@ -37,6 +37,7 @@ class StaffController extends Controller
      */
     public function qualifyCollectionQuery($query){
         $query = parent::qualifyCollectionQuery($query);
+        $query->whereIn('status', ['active','dispatch','biz-trap']);
         $search = request('search');
         if( !(empty($search)) ) {
             $query->where('name', 'like', '%'.$search.'%');
@@ -46,7 +47,7 @@ class StaffController extends Controller
 
         $roles = $this->auth()->user()->getRoles();
 
-        if( ! $this->auth()->user()->isAdmin() ) {
+        if( ! $this->auth()->user()->isAdmin() && ! $this->auth()->user()->primaryRole->name == 'executives') {
             $user = $this->auth()->user();
             $deptId = $user->staff->dept_id;
         }
