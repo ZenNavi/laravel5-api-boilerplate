@@ -24,7 +24,7 @@ class JobTraining extends BaseModel
     /**
      * @var array The attributes that are mass assignable.
      */
-    protected $fillable = ['staff_id', 'course_name', 'course_detail', 'organization', 'course_result', 'attach_id', 'issue_at', 'remark'];
+    protected $fillable = ['staff_id', 'course_start_at', 'course_end_at', 'course_name', 'course_detail', 'organization', 'course_result', 'attach_id', 'issue_at', 'remark'];
 
     /**
      * @var array The attributes that should be hidden for arrays and API output
